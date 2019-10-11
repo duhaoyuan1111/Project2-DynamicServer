@@ -1,0 +1,130 @@
+* {
+    margin: 0 auto;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 62.5%;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #A8A8A8;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    color: #000000;
+}
+
+h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    font-style: normal;
+}
+
+p, select, option {
+    font-size: 1.2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+label, button {
+    font-size: 1.2rem;
+    margin-left: 2rem;
+}
+
+table {
+    font-size: 1.2rem;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #C8C8C8;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #F4F4F4;
+}
+
+thead tr {
+    background-color: #A0D5EB;
+    border-bottom: solid 1px #000000;
+}
+
+th {
+    min-width: 11rem;
+}
+
+td {
+    padding-left: 3rem;
+
+}
+
+#wrapper {
+    background-color: #FFFFFF;
+    width: 960px;
+}
+
+#content {
+    background-color: #FFFFFF;
+    width: 940px;
+    margin: 0;
+    padding: 10px 10px 0px 10px;
+}
+
+#view_select {
+    background-color: #A0D5EB;
+    padding: 2rem;
+}
+
+#snapshot {
+    width: 680px;
+    height: 510px;
+}
+
+.scroll_table {
+    max-height: 23.5rem;
+    max-width: 940px;
+    display: inline-block;
+    overflow: scroll;
+    border: solid 1px black;
+}
+
+.prev_next {
+    display: inline-block;
+    background-color: #C8C8C8;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: #000000;
+    padding: .5rem;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.spacer1 {
+    height: 1rem;
+    clear: both;
+}
+
+.spacer2 {
+    height: 2rem;
+    clear: both;
+}

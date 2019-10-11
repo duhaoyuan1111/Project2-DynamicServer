@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>US Energy Consumption</title> <!-- change title to include year (e.g. 1999 US Energy Consumption) -->
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-cartesian.min.js"></script>
+    <script type="application/javascript" src="/scripts/viewselect.js"></script>
+    <script type="application/javascript" src="/scripts/energyvis.js"></script>
+    <script type="application/javascript">
+        // `energy_type` and object of consumption per year per state --> set these variables equal to appropriate value
+        var energy_type;
+        var energy_counts;  // e.g. {AK: [...], AL: [...], AR: [...], ...}
+    </script>
+</head>
+<body onload="Init()">
+    <div id="wrapper">
+        <div id="content">
+            <a href="/"><h1>US Energy Consumption</h1></a>
+            
+            <div class="spacer2"></div>
+            
+            <div id="view_select">
+                <h2>In Depth Analysis</h2>
+                <div class="spacer1"></div>
+                <label for="view_type">View by: </label>
+                <select id="view_type" onchange="SearchTypeChanged()">
+                    <option value="year">Year</option>
+                    <option value="state">State</option>
+                    <option value="energy-type" selected>Energy Type</option>
+                </select>
+                <label for="view_value">Select year: </label>
+                <select id="view_value">
+                </select>
+                <button type="button" onclick="SubmitView()">View</button>
+            </div>
+            
+            <div class="spacer2"></div>
+
+            <div>
+                <div class="left">
+                    <h2>Consumption Snapshot</h2> <!-- change header to include energy type (e.g. Coal Consumption Snaphot) -->
+                </div>
+                <div class="right">
+                    <a class="prev_next" href="">XX</a> <!-- change XX to prev enery type, link to Renewable if energy is Coal -->
+                    <a class="prev_next" href="">XX</a> <!-- change XX to next enery type, link to Coal if energy is Renewable -->
+                </div>
+                <div class="spacer1"></div>
+                <div class="left">
+                    <img src="/images/noimage.jpg" alt="No Image" width="250" height="auto" /> <!-- change src and alt for energy type image -->
+                </div>
+                <div class="right">
+                    <div id="snapshot"></div>
+                </div>
+            </div>
+
+            <div class="spacer2"></div>
+
+            <h2>Consumption by Year</h2>
+            <div class="spacer1"></div>
+            <div class="scroll_table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>AK</th>
+                        <th>AL</th>
+                        <th>AR</th>
+                        <th>AZ</th>
+                        <th>CA</th>
+                        <th>CO</th>
+                        <th>CT</th>
+                        <th>DC</th>
+                        <th>DE</th>
+                        <th>FL</th>
+                        <th>GA</th>
+                        <th>HI</th>
+                        <th>IA</th>
+                        <th>ID</th>
+                        <th>IL</th>
+                        <th>IN</th>
+                        <th>KS</th>
+                        <th>KY</th>
+                        <th>LA</th>
+                        <th>MA</th>
+                        <th>MD</th>
+                        <th>ME</th>
+                        <th>MI</th>
+                        <th>MN</th>
+                        <th>MO</th>
+                        <th>MS</th>
+                        <th>MT</th>
+                        <th>NC</th>
+                        <th>ND</th>
+                        <th>NE</th>
+                        <th>NH</th>
+                        <th>NJ</th>
+                        <th>NM</th>
+                        <th>NV</th>
+                        <th>NY</th>
+                        <th>OH</th>
+                        <th>OK</th>
+                        <th>OR</th>
+                        <th>PA</th>
+                        <th>RI</th>
+                        <th>SC</th>
+                        <th>SD</th>
+                        <th>TN</th>
+                        <th>TX</th>
+                        <th>UT</th>
+                        <th>VA</th>
+                        <th>VT</th>
+                        <th>WA</th>
+                        <th>WI</th>
+                        <th>WV</th>
+                        <th>WY</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data to be inserted here -->
+                </tbody>
+            </table>
+            </div>
+
+            <div class="spacer2"></div>
+        </div>
+    </div>
+</body>
+</html>

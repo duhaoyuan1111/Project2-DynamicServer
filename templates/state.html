@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>US Energy Consumption</title> <!-- change title to include year (e.g. 1999 US Energy Consumption) -->
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-cartesian.min.js"></script>
+    <script type="application/javascript" src="/scripts/viewselect.js"></script>
+    <script type="application/javascript" src="/scripts/statevis.js"></script>
+    <script type="application/javascript">
+        // `state` and arrays of consumption per year --> set these variables equal to appropriate value
+        var state;
+        var coal_counts;  // e.g. [1234, 2567, ...]
+        var natural_gas_count;
+        var nuclear_counts;
+        var petroleum_counts;
+        var renewable_counts;
+    </script>
+</head>
+<body onload="Init()">
+    <div id="wrapper">
+        <div id="content">
+            <a href="/"><h1>US Energy Consumption</h1></a>
+            
+            <div class="spacer2"></div>
+            
+            <div id="view_select">
+                <h2>In Depth Analysis</h2>
+                <div class="spacer1"></div>
+                <label for="view_type">View by: </label>
+                <select id="view_type" onchange="SearchTypeChanged()">
+                    <option value="year">Year</option>
+                    <option value="state" selected>State</option>
+                    <option value="energy-type">Energy Type</option>
+                </select>
+                <label for="view_value">Select year: </label>
+                <select id="view_value">
+                </select>
+                <button type="button" onclick="SubmitView()">View</button>
+            </div>
+            
+            <div class="spacer2"></div>
+
+            <div>
+                <div class="left">
+                    <h2>Yearly Snapshot</h2> <!-- change header to include state (e.g. Minnesota Yearly Snaphot) -->
+                </div>
+                <div class="right">
+                    <a class="prev_next" href="">XX</a> <!-- change XX to prev state, link to WY if state is AK -->
+                    <a class="prev_next" href="">XX</a> <!-- change XX to next state, link to AK if state is WY -->
+                </div>
+                <div class="spacer1"></div>
+                <div class="left">
+                    <img src="/images/noimage.jpg" alt="No Image" width="250" height="auto" /> <!-- change src and alt for state image -->
+                </div>
+                <div class="right">
+                    <div id="snapshot"></div>
+                </div>
+            </div>
+
+            <div class="spacer2"></div>
+
+            <h2>Consumption by Year</h2>
+            <div class="spacer1"></div>
+            <div class="scroll_table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Coal</th>
+                        <th>Natural Gas</th>
+                        <th>Nuclear</th>
+                        <th>Petroleum</th>
+                        <th>Renewable</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data to be inserted here -->
+                </tbody>
+            </table>
+            </div>
+
+            <div class="spacer2"></div>
+        </div>
+    </div>
+</body>
+</html>
