@@ -41,9 +41,7 @@ app.use(express.static(public_dir));
 app.get('/', (req, res) => {
     ReadFile(path.join(template_dir, 'index.html')).then((template) => {
         let response = template;
-		//response = response.toString();
 		db.all("SELECT * FROM Consumption WHERE year = ?", ['2017'], (err, rows) => {
-			
 			var totalcoal = 0;
 			var totalnatural_gas = 0;
 			var totalnuclear = 0;
@@ -75,15 +73,16 @@ app.get('/', (req, res) => {
 app.get('/year/:selected_year', (req, res) => {
     ReadFile(path.join(template_dir, 'year.html')).then((template) => {
         let response = template;
-		var year = req.params.selected_year;
-        // modify `response` here
-		response = response.replace('US Energy Consumption', year+'US Energy Consumption');
-		db.all("SELECT * FROM Consumption WHERE year = ?", [year], (err, rows) => {
+		var curyear = req.params.selected_year;
+		response = response.replace('US Energy Consumption', curyear+' US Energy Consumption');
+		response = response.replace('National Snapshot', curyear+' National Snapshot');
+		db.all("SELECT * FROM Consumption WHERE year = ?", [curyear], (err, rows) => {
 			var totalcoal = 0;
 			var totalnatural_gas = 0;
 			var totalnuclear = 0;
 			var totalpetroleum = 0;
 			var totalrenewable = 0;
+			var statetotal = 0;
 			var tableInfo = '';
 			for(var i=0; i<rows.length; i++) {
 				totalcoal = totalcoal + rows[i].coal;
@@ -91,7 +90,8 @@ app.get('/year/:selected_year', (req, res) => {
 				totalnuclear = totalnuclear + rows[i].nuclear;
 				totalpetroleum = totalpetroleum + rows[i].petroleum;
 				totalrenewable = totalrenewable + rows[i].renewable;
-				tableInfo = tableInfo + '<tr>\n<td>'+rows[i].state_abbreviation+'</td>\n<td>'+rows[i].coal+'</td>\n<td>'+rows[i].natural_gas+'</td>\n<td>'+rows[i].nuclear+'</td>\n<td>'+rows[i].petroleum+'</td>\n<td>'+rows[i].renewable+'</td>\n</tr>\n';
+				statetotal = rows[i].coal + rows[i].natural_gas + rows[i].nuclear + rows[i].petroleum + rows[i].renewable;
+				tableInfo = tableInfo + '<tr>\n<td>'+rows[i].state_abbreviation+'</td>\n<td>'+rows[i].coal+'</td>\n<td>'+rows[i].natural_gas+'</td>\n<td>'+rows[i].nuclear+'</td>\n<td>'+rows[i].petroleum+'</td>\n<td>'+rows[i].renewable+'</td>\n<td>'+statetotal+'</td>\n</tr>\n';
 			}
 			response = response.replace('coal_count;', 'coal_count='+totalcoal+";");
 			response = response.replace('natural_gas_count;', 'natural_gas_count='+totalnatural_gas+";");
@@ -99,29 +99,20 @@ app.get('/year/:selected_year', (req, res) => {
 			response = response.replace('petroleum_count;', 'petroleum_count='+totalpetroleum+";");
 			response = response.replace('renewable_count;', 'renewable_count='+totalrenewable+";");
 			response = response.replace('<!-- Data to be inserted here -->', tableInfo);
-			WriteHtml(res, response);
 			if (req.params.selected_year == '1960') {
 				response = response.replace('<a class="prev_next" href="">Prev</a>', '<a class="prev_next" href="http://localhost:8000/year/1960">Prev</a>');
-				
+				response = response.replace('<a class="prev_next" href="">Next</a>', '<a class="prev_next" href="http://localhost:8000/year/'+(parseInt(curyear)+1)+'">Next</a>');
 			} else if (req.params.selected_year == '2017') {
-				
+				response = response.replace('<a class="prev_next" href="">Prev</a>', '<a class="prev_next" href="http://localhost:8000/year/'+(parseInt(curyear)-1)+'">Prev</a>');
+				response = response.replace('<a class="prev_next" href="">Next</a>', '<a class="prev_next" href="http://localhost:8000/year/2017">Next</a>');
 			} else {
-				
+				response = response.replace('<a class="prev_next" href="">Prev</a>', '<a class="prev_next" href="http://localhost:8000/year/'+(parseInt(curyear)-1)+'">Prev</a>');
+				response = response.replace('<a class="prev_next" href="">Next</a>', '<a class="prev_next" href="http://localhost:8000/year/'+(parseInt(curyear)+1)+'">Next</a>');
 			}
+			WriteHtml(res, response);
 		}).catch((err) => {
 			Write404Error(res);
-		});		
-		
-		
-		
-		
-		//1. 改变html里title US Energy Consumption 的年份
-		//2. 从req.params.selected_year 获得相应的年份
-		//3. National Snapshot增加年份
-		//4. 通过 prev （先用if statement 去判断是否为1960. 如果是则不变， 如果不是则x-1 然后跳转至/year/x-1 网址）
-		//		  next  （先用if statement 去判断是否为2017. 如果是则不变， 如果不是则x+1 然后跳转至/year/x+1 网址）
-		//5. 查找x年的五种消耗品的百分比， 然后template.replac（index。html【67-71行】， 从database里获取的数据 ）
-        
+		});
     });
 });
 
@@ -129,7 +120,7 @@ app.get('/year/:selected_year', (req, res) => {
 app.get('/state/:selected_state', (req, res) => {
     ReadFile(path.join(template_dir, 'state.html')).then((template) => {
         let response = template;
-        // modify `response` here
+		
 		/*
 			1 改变html里title US Energy Consumption 的年份
 			  从req.params.selected_state 获得相应的州
