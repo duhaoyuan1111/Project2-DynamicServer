@@ -3,23 +3,23 @@
     "version": "0.0.0",
     "description": "Dynamic Web Server using Node JS",
     "author": {
-        "name": "",
-        "email": ""
+        "name": "Haoyuan Du",
+        "email": "du005162@stthomas.edu"
     },
     "contributors": [
         {
-            "name": "",
-            "email": ""
+            "name": "Haoyuan Du",
+            "email": "du005162@stthomas.edu"
         },
         {
-            "name": "",
-            "email": ""
+            "name": "Austin Hippe",
+            "email": "hipp5302@stthomas.edu"
         }
     ],
     "main": "server.js",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/duhaoyuan1111/Project2-DynamicServer"
     },
     "dependencies": {
         "express": "^4.17.1",
