@@ -214,7 +214,6 @@ app.get('/energy-type/:selected_energy_type', (req, res) => {
 				var tt = 'Renewable';
 				response = response.replace('US Energy Consumption', 'US '+tt+' Energy Consumption');
 			}
-			response = response.replace('US Energy Consumption', curtype+' US Energy Consumption');
 			db.all("SELECT "+curtype+",state_abbreviation FROM Consumption ORDER BY state_abbreviation,year", (err, rows) => {
 				var tableInfo = '';
 				var bag = new Array(51);
