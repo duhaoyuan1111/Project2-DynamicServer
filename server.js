@@ -198,6 +198,22 @@ app.get('/energy-type/:selected_energy_type', (req, res) => {
 		var curtype = req.params.selected_energy_type;
 		if (curtype == 'coal'||curtype == 'natural_gas'||curtype == 'nuclear'||curtype == 'petroleum'||curtype == 'renewable') {
 			var returnString='';
+			if (curtype == 'coal') {
+				var tt = 'Coal';
+				response = response.replace('US Energy Consumption', 'US '+tt+' Energy Consumption');
+			} else if (curtype == 'natural_gas') {
+				var tt = 'Natural gas';
+				response = response.replace('US Energy Consumption', 'US '+tt+' Energy Consumption');
+			} else if (curtype == 'nuclear') {
+				var tt = 'Nuclear';
+				response = response.replace('US Energy Consumption', 'US '+tt+' Energy Consumption');
+			} else if (curtype == 'petroleum') {
+				var tt = 'Petroleum';
+				response = response.replace('US Energy Consumption', 'US '+tt+' Energy Consumption');
+			} else {
+				var tt = 'Renewable';
+				response = response.replace('US Energy Consumption', 'US '+tt+' Energy Consumption');
+			}
 			response = response.replace('US Energy Consumption', curtype+' US Energy Consumption');
 			db.all("SELECT "+curtype+",state_abbreviation FROM Consumption ORDER BY state_abbreviation,year", (err, rows) => {
 				var tableInfo = '';
