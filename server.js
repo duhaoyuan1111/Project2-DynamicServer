@@ -126,7 +126,7 @@ app.get('/state/:selected_state', (req, res) => {
 		curstate=='NM'||curstate=='NV'||curstate=='NY'||curstate=='OH'||curstate=='OK'||curstate=='OR'||curstate=='PA'||curstate=='RI'||
 		curstate=='SC'||curstate=='SD'||curstate=='TN'||curstate=='TX'||curstate=='UT'||curstate=='VA'||curstate=='VT'||curstate=='WA'||
 		curstate=='WI'||curstate=='WV'||curstate=='WY') {
-			response = response.replace('US Energy Consumption', curstate+' US Energy Consumption');
+			response = response.replace('US Energy Consumption', curstate+' Energy Consumption');
 			db.all("SELECT * FROM Consumption WHERE state_abbreviation = ? ORDER BY year", [curstate], (err, rows) => {
 				var statetotal = 0;
 				var coalList = new Array(rows.length);
