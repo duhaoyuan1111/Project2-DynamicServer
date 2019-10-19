@@ -145,7 +145,7 @@ app.get('/state/:selected_state', (req, res) => {
 					tableInfo = tableInfo + '<tr>\n<td>'+rows[i].year+'</td>\n<td>'+rows[i].coal+'</td>\n<td>'+rows[i].natural_gas+'</td>\n<td>'+rows[i].nuclear+'</td>\n<td>'+rows[i].petroleum+'</td>\n<td>'+rows[i].renewable+'</td>\n<td>'+statetotal+'</td>\n</tr>\n';
 				}
 				response = response.replace('coal_counts;', 'coal_counts=['+coalList+"];");
-				response = response.replace('natural_gas_count;', 'natural_gas_count=['+natural_gasList+"];");
+				response = response.replace('natural_gas_counts;', 'natural_gas_counts=['+natural_gasList+"];");
 				response = response.replace('nuclear_counts;', 'nuclear_counts=['+nuclearList+"];");
 				response = response.replace('petroleum_counts;', 'petroleum_counts=['+petroleumList+"];");
 				response = response.replace('renewable_counts;', 'renewable_counts=['+renewableList+"];");
