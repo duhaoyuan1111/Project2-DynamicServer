@@ -30,7 +30,7 @@ anychart.onDocumentReady(() => {
             petroleum_data.push([i + 1960, 1]);
         }
         if (Array.isArray(window.renewable_counts) && window.renewable_counts.length > i) {
-            renewable_data.push([i + 1960, window.coal_counts[i]]);
+            renewable_data.push([i + 1960, window.renewable_counts[i]]);
         }
         else {
             renewable_data.push([i + 1960, 1]);
