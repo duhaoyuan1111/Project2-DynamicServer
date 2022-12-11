@@ -22,7 +22,7 @@
         "url": "https://github.com/duhaoyuan1111/Project2-DynamicServer"
     },
     "dependencies": {
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "sqlite3": "^4.1.0"
     }
 }
